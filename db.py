@@ -100,3 +100,16 @@ def get_product(product_id):
     cursor.close()
     conn.close()
     return result
+
+
+def get_product_by_url(url):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT id, name, target_price FROM products
+        WHERE url = %s
+    """, (url,))
+    result = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return result
