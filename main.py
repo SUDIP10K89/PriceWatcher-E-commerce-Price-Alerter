@@ -14,6 +14,6 @@ product_id = add_product(
 print("Product added with ID:", product_id)
 
 scrape_product(
-    2,
-    "https://books.toscrape.com/catalogue/soumission_998/index.html"
+    product_id,
+    "https://books.toscrape.com/catalogue/the-coming-woman-a-novel-based-on-the-life-of-the-infamous-feminist-victoria-woodhull_993/index.html"
 )

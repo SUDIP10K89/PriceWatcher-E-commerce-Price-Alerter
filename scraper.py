@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from db import add_price, get_last_price, get_product
-
+from alerts import send_email_alert
 
 def scrape_product(product_id, url):
     try:
@@ -36,10 +36,12 @@ def scrape_product(product_id, url):
         print(f"New price stored: {price}")
 
         product = get_product(product_id)
+        
         if product:
             name, target_price = product
             if price <= float(target_price):
                 print(f"PRICE DROP ALERT for {name}! Price = {price}")
+                send_email_alert(name, price, url)
 
         return price
 
