@@ -2,5 +2,4 @@ requests
 beautifulsoup4
 psycopg2-binary
 APScheduler
-slack_sdk
 python-dotenv
