@@ -1,24 +1,27 @@
-import requests
 from bs4 import BeautifulSoup
+from utils import fetch_with_retry, random_delay
+from logger import logger
 
 
 def get_price(url):
-    headers = {
-        "User-Agent": "Mozilla/5.0"
-    }
+    html = fetch_with_retry(url)
 
-    response = requests.get(url, headers=headers)
-    if response.status_code != 200:
+    if not html:
+        logger.error(f"Failed to fetch page: {url}")
         return None
 
-    soup = BeautifulSoup(response.text, "html.parser")
+    soup = BeautifulSoup(html, "html.parser")
 
     price_tag = soup.select_one(".price_color")
     if not price_tag:
+        logger.error("Price element not found")
         return None
 
     price_text = price_tag.get_text().strip()
     price = float(price_text.replace("Â£", "").replace(",", ""))
 
-    return price
+    logger.info(f"Scraped price: {price}")
 
+    random_delay(1, 3)  
+
+    return price
