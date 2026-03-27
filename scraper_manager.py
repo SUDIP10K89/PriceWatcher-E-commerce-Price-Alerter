@@ -1,7 +1,5 @@
 from scrapers.books_scraper import get_price as books_price
-# future:
-# from scrapers.amazon_scraper import get_price as amazon_price
-# from scrapers.ebay_scraper import get_price as ebay_price
+from scrapers.playwright_scraper import get_price_playwright
 
 from logger import logger
 from db import add_price, get_last_price, get_product
@@ -11,6 +9,13 @@ from alerts import send_email_alert
 def scrape_product(product_id, url, site):
     if site == "books.toscrape.com":
         price = books_price(url)
+
+    elif site == "amazon":
+        price = get_price_playwright(url, ".a-price-whole")
+        
+    elif site == "daraz":
+        price = get_price_playwright(url, ".pdp-price_size_xl")
+
     else:
         logger.info("No scraper for site: %s", site)
         return
