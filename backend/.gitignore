@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+.venv/
+
+# Environment
+.env
+
+# Logs
+pricewatch.log
+*.log
+
+# Database
+*.db
+*.sqlite
+
+# Playwright
+playwright-report/
+test-results/
+
+# Distribution
+dist/
+build/

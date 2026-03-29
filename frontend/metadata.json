@@ -1,0 +1,5 @@
+{
+  "name": "PriceWatch",
+  "description": "Smart price monitoring dashboard with real-time alerts and price history tracking.",
+  "requestFramePermissions": []
+}
