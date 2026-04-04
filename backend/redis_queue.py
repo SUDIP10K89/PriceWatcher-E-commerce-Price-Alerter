@@ -12,5 +12,3 @@ def get_redis_conn():
         password=os.getenv("REDIS_PASSWORD"),
         decode_responses=True
     )
-
-print(get_redis_conn())
